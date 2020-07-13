@@ -15,6 +15,7 @@ module.exports = {
         ['first', '第一章：字符匹配'], /* /RegExp/first.html */
         ['first_practise', '第一章练习册'], /* /RegExp/first_practise.html */
         ['second', '第二章：位置匹配'], /* /RegExp/first.html */
+        ['second_practise', '第二章练习册'], /* /RegExp/second_practise.html */
       ]
     }
   }
