@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>位置匹配对应的练习题 | 前端知识体系</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="icon" href="/blog/favicon.ico">
+    <meta name="description" content="将零碎知识归纳、整合成完成的框架体系">
+    <link rel="preload" href="/blog/assets/css/0.styles.56a09861.css" as="style"><link rel="preload" href="/blog/assets/js/app.eda0559f.js" as="script"><link rel="preload" href="/blog/assets/js/2.7cc74fb0.js" as="script"><link rel="preload" href="/blog/assets/js/10.88db621d.js" as="script"><link rel="prefetch" href="/blog/assets/js/3.e3420f47.js"><link rel="prefetch" href="/blog/assets/js/4.76e6ca2b.js"><link rel="prefetch" href="/blog/assets/js/5.b91030ac.js"><link rel="prefetch" href="/blog/assets/js/6.ecf3f633.js"><link rel="prefetch" href="/blog/assets/js/7.a5a2f4c4.js"><link rel="prefetch" href="/blog/assets/js/8.a9b46bc1.js"><link rel="prefetch" href="/blog/assets/js/9.51405078.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.56a09861.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">前端知识体系</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/RegExp/" class="nav-link router-link-active">
+  正则表达式
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/RegExp/" class="nav-link router-link-active">
+  正则表达式
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/blog/RegExp/" aria-current="page" class="sidebar-link">学习笔记</a></li><li><a href="/blog/RegExp/first.html" class="sidebar-link">第一章：字符匹配</a></li><li><a href="/blog/RegExp/first_practise.html" class="sidebar-link">第一章练习册</a></li><li><a href="/blog/RegExp/second.html" class="sidebar-link">第二章：位置匹配</a></li><li><a href="/blog/RegExp/second_practise.html" aria-current="page" class="active sidebar-link">第二章练习册</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/RegExp/second_practise.html#验证密码问题" class="sidebar-link">验证密码问题</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="位置匹配对应的练习题"><a href="#位置匹配对应的练习题" class="header-anchor">#</a> 位置匹配对应的练习题</h1> <h2 id="验证密码问题"><a href="#验证密码问题" class="header-anchor">#</a> 验证密码问题</h2> <ul><li>规则一：密码长度 6-12 位，由数字、小写字母和大写字母组成</li> <li>规则二：至少包括 2 种字符。</li></ul> <h4 id="step-1"><a href="#step-1" class="header-anchor">#</a> step 1</h4> <p>先写出满足规则一的正则表达式：</p> <p>横向匹配：长度使用量词 {m,n} 即可；
+纵向匹配：数字、小写字母、大写字母；</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> regexp <span class="token operator">=</span> <span class="token regex">/[0-9a-zA-Z]{6,12}/</span><span class="token punctuation">;</span>
+</code></pre></div><h4 id="step-2"><a href="#step-2" class="header-anchor">#</a> step 2</h4> <p>判断包含某一种字符串？</p> <p>假设要求必须包含数字，该怎么使用正则进行判断呢？</p> <p>我首先想到的是量词 <code>+</code>, 即至少出现一次</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> regexp <span class="token operator">=</span> <span class="token regex">/[0-9]+/</span><span class="token punctuation">;</span>
+</code></pre></div><p>或者</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> regexp <span class="token operator">=</span> <span class="token regex">/[0-9]{1,12}/</span><span class="token punctuation">;</span>
+</code></pre></div><p>但是这种方式不能和 step 1 中的正则表达式合并起来，只能按照顺序逐个检测是否符合规则。<br>
+(这里不考虑最笨的暴力枚举)</p> <p>作者的思路是通过位置来进行判断，即 <code>(?=.*[0-9])</code></p> <p>为什么这个正则表达式可以呢？我们来分析下：</p> <p>这里使用了正向先行断言，子模式是<code>.*[0-9]</code>, 其中</p> <ul><li><code>.*</code> 表示任意字符出现任意次<br>
+和 <code>[0-9a-zA-Z]{0,11}</code> 的作用相同</li> <li><code>[0-9]</code> 表示数字</li></ul> <p>合并起来字面意思就是：寻找位于<strong>任意字符 + 数字</strong>前面的位置。</p> <p>翻译成符合人类思维就是：匹配的结果的<strong>前面部分</strong>应该是 <strong>任意字符 + 数字</strong> 这种形式。</p> <p><strong>前面部分</strong>是<strong>任意字符 + 数字</strong> 可以是下面的组合：</p> <ul><li><p>数字开头<br>
+1234ab</p></li> <li><p>数字不开头<br>
+ab1234</p></li> <li><p>数字结尾<br>
+1234ab12<br>
+ab12345</p></li> <li><p>数字不结尾<br>
+1234ab<br>
+ab1234ee</p></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/blog/RegExp/second.html" class="prev">
+        第二章：位置匹配
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/blog/assets/js/app.eda0559f.js" defer></script><script src="/blog/assets/js/2.7cc74fb0.js" defer></script><script src="/blog/assets/js/10.88db621d.js" defer></script>
+  </body>
+</html>
