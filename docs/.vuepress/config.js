@@ -17,6 +17,7 @@ module.exports = {
         ['second', '第二章：位置匹配'], /* /RegExp/first.html */
         ['second_practise', '第二章练习册'], /* /RegExp/second_practise.html */
         ['third', '第三章：括号的作用'], /* /RegExp/third.html */
+        ['third_practise', '第三章练习册'], /* /RegExp/third_practise.html */
       ]
     }
   }
