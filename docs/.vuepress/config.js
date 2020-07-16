@@ -18,6 +18,7 @@ module.exports = {
         ['second_practise', '第二章练习册'], /* /RegExp/second_practise.html */
         ['third', '第三章：括号的作用'], /* /RegExp/third.html */
         ['third_practise', '第三章练习册'], /* /RegExp/third_practise.html */
+        ['fourthly', '第四章：回朔法原理'], /* /RegExp/fourthly.html */
       ]
     }
   }
